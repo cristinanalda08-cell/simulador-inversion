@@ -1,5 +1,16 @@
 import streamlit as st
 
+st.markdown("""
+    <style>
+    .stApp {
+        background-color: #E3F2FD; /* Azul muy clarito */
+    }
+    /* Estilo para los títulos */
+    h1, h3 {
+        color: #1565C0;
+    }
+    </style>
+    """, unsafe_allow_html=True)
 # Configuración estética
 st.set_page_config(page_title="Simulador VAN y Payback", page_icon="💰")
 
@@ -54,14 +65,36 @@ if submitted:
             payback_resultado = f"{anio_recup:.2f} años"
             break
             
-    # MOSTRAR RESULTADOS
-    st.success(f"### Resultados: {nombre}")
-    res1, res2 = st.columns(2)
-    res1.metric("VAN", f"{van:,.2f} €")
-    res2.metric("Payback", payback_resultado)
+   # --- MOSTRAR RESULTADOS PERSONALIZADOS ---
+    st.write("---")
+    st.subheader(f"Análisis final: {nombre}")
     
-    if van > 0:
-        st.balloons()
-        st.write("**Conclusión:** El proyecto es viable.")
+    # Definir colores según el VAN
+    if van >= 0:
+        color_fondo = "#D4EFDF"  # Verde clarito
+        color_texto = "#145A32"  # Verde oscuro
+        mensaje = f"El proyecto es rentable"
     else:
-        st.write("**Conclusión:** El proyecto no es rentable.")
+        color_fondo = "#FADBD8"  # Rojo clarito
+        color_texto = "#7B241C"  # Rojo oscuro
+        mensaje = f"El proyecto no es rentable"
+
+    # Crear el recuadro de resultado
+    st.markdown(f"""
+        <div style="
+            background-color: {color_fondo};
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid {color_texto};
+            text-align: center;
+            margin-bottom: 20px;">
+            <h2 style="color: {color_texto}; margin: 0;">{mensaje}</h2>
+        </div>
+        """, unsafe_allow_html=True)
+
+    # Mostrar las métricas numéricas
+    res1, res2 = st.columns(2)
+    with res1:
+        st.metric("VALOR ACTUAL NETO (VAN)", f"{van:,.2f} €")
+    with res2:
+        st.metric("TIEMPO DE RECUPERACIÓN (Payback)", payback_resultado)
