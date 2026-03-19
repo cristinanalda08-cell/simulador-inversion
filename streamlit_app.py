@@ -3,8 +3,8 @@ import streamlit as st
 # Configuración estética
 st.set_page_config(page_title="Simulador VAN y Payback", page_icon="💰")
 
-st.title("📊 Simulador de Inversiones")
-st.write("Herramienta interactiva para el análisis de proyectos de inversión.")
+st.title("Simulador de Inversiones")
+st.write("Herramienta interactiva para simular proyectos de inversión")
 
 # Formulario de entrada
 with st.form("datos_proyecto"):
@@ -13,7 +13,7 @@ with st.form("datos_proyecto"):
         nombre = st.text_input("Nombre del Proyecto", "Mi Proyecto")
         inversion = st.number_input("Inversión Inicial (€)", min_value=0.0, value=1000.0)
     with col_b:
-        tasa = st.number_input("Tasa de descuento % (k)", min_value=0.0, value=5.0) / 100
+        tasa = st.number_input("Tasa (%)", min_value=0.0, value=5.0) / 100
     
     st.write("---")
     st.subheader("Flujos de Caja (Años 1 al 10)")
@@ -33,7 +33,7 @@ with st.form("datos_proyecto"):
     f9 = c9.number_input("Año 9", value=0.0)
     f10 = c10.number_input("Año 10", value=0.0)
     
-    submitted = st.form_submit_button("Calcular Proyecto")
+    submitted = st.form_submit_button("Simular mi inverisón")
 
 if submitted:
     flujos = [f1, f2, f3, f4, f5, f6, f7, f8, f9, f10]
@@ -55,13 +55,13 @@ if submitted:
             break
             
     # MOSTRAR RESULTADOS
-    st.success(f"### Resultados para: {nombre}")
+    st.success(f"### Resultados: {nombre}")
     res1, res2 = st.columns(2)
     res1.metric("VAN", f"{van:,.2f} €")
     res2.metric("Payback", payback_resultado)
     
     if van > 0:
         st.balloons()
-        st.write("✅ **Conclusión:** El proyecto es viable.")
+        st.write("**Conclusión:** El proyecto es viable.")
     else:
-        st.write("❌ **Conclusión:** El proyecto no es rentable.")
+        st.write("**Conclusión:** El proyecto no es rentable.")
