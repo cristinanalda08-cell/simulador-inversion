@@ -1,16 +1,6 @@
 import streamlit as st
 
-st.markdown("""
-    <style>
-    .stApp {
-        background-color: #E3F2FD; /* Azul muy clarito */
-    }
-    /* Estilo para los títulos */
-    h1, h3 {
-        color: #1565C0;
-    }
-    </style>
-    """, unsafe_allow_html=True)
+
 # Configuración estética
 st.set_page_config(page_title="Simulador VAN y Payback", page_icon="💰")
 
