@@ -1,13 +1,13 @@
 import streamlit as st
 
 
-# Configuración estética
+# ESTÉTICA DE LA PÁGINA
 st.set_page_config(page_title="Simulador VAN y Payback", page_icon="💰")
 
 st.title("Simulador de Inversiones")
 st.write("Herramienta interactiva para simular proyectos de inversión")
 
-# Formulario de entrada
+# DATOS INICIALES
 with st.form("datos_proyecto"):
     col_a, col_b = st.columns(2)
     with col_a:
@@ -19,7 +19,7 @@ with st.form("datos_proyecto"):
     st.write("---")
     st.subheader("Flujos de Caja (Años 1 al 10)")
     
-    # Creamos 10 casillas para los flujos
+    # CASILLAS PARA LOS 10 AÑOS DE FLUJO
     c1, c2, c3, c4, c5 = st.columns(5)
     f1 = c1.number_input("Año 1", value=0.0)
     f2 = c2.number_input("Año 2", value=0.0)
@@ -55,11 +55,11 @@ if submitted:
             payback_resultado = f"{anio_recup:.2f} años"
             break
             
-   # --- MOSTRAR RESULTADOS PERSONALIZADOS ---
+   # RESULTADOS PERSONALIZADOS
     st.write("---")
     st.subheader(f"Análisis final: {nombre}")
     
-    # Definir colores según el VAN
+    # COLORES SEGÚN EL VAN
     if van >= 0:
         color_fondo = "#D4EFDF"  # Verde clarito
         color_texto = "#145A32"  # Verde oscuro
@@ -69,7 +69,7 @@ if submitted:
         color_texto = "#7B241C"  # Rojo oscuro
         mensaje = f"El proyecto no es rentable"
 
-    # Crear el recuadro de resultado
+    # RECUADRO DEL RESULTADO
     st.markdown(f"""
         <div style="
             background-color: {color_fondo};
@@ -82,7 +82,7 @@ if submitted:
         </div>
         """, unsafe_allow_html=True)
 
-    # Mostrar las métricas numéricas
+    # RESULTADOS
     res1, res2 = st.columns(2)
     with res1:
         st.metric("VALOR ACTUAL NETO (VAN)", f"{van:,.2f} €")
