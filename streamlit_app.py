@@ -91,7 +91,6 @@ if submitted:
 # QUITAR LOGOS
 st.markdown("""
     <style>
-    /* Oculta el botón de GitHub, el menú de Streamlit y el pie de página */
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
     header {visibility: hidden;}
