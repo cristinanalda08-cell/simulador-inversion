@@ -34,7 +34,7 @@ with st.form("datos_proyecto"):
     f9 = c9.number_input("Año 9", value=0.0)
     f10 = c10.number_input("Año 10", value=0.0)
     
-    submitted = st.form_submit_button("Simular mi inverisón")
+    submitted = st.form_submit_button("Simular mi inversión")
 
 if submitted:
     flujos = [f1, f2, f3, f4, f5, f6, f7, f8, f9, f10]
